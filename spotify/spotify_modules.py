@@ -26,10 +26,28 @@ def get_songs(playlist, songs = []):
         songs.append({"name": i["track"]["name"], "artists": artists})
     return songs
 
+def get_playlists(user, playlists = []):
+    for i in sp.user_playlists(user)["items"]:
+        playlists.append({
+            "name": i["name"],
+            "id": i["id"],
+            "songs": get_songs(i["id"])
+        })
+    return playlists
 
 def save_user_data(user):
-    print(get_songs("5e7WkKA5MtmhHP0eK9wMFT")[48])
-
+    with open("spotify/user_data.json", "r") as f:
+        f = json.load(f)
+    for i in f:
+        if i["name"] == user:
+            print("User has already been added")
+            exit()
+    f.append({
+        "name": user,
+        "playlists": get_playlists(user)
+    })
+    with open("spotify/user_data.json", "w") as file:
+        json.dump(f, file)
 
 
 
