@@ -1,6 +1,6 @@
 # Spotify
 
-## Structure of data.json
+## Structure of database.json
 
 ```
 
@@ -22,6 +22,24 @@
                                     }
                             ]
             }   
+        ],
+        "100_recent_songs": [
+            {
+                "name": Contry Roads,
+                "artists": [{
+                    "name": John Denver,
+                    "id": 674sdf6dsf756,
+                    "genres": ["country", "techno", "jazz", "techno", "techno"]
+                    }
+                ]
+            }
+        ],
+        "top_artists": [
+            {
+                "name": John Denver,
+                "id": 674sdf6dsf756,
+                "genres": ["country", "techno", "jazz", "techno", "techno"]
+            }
         ]
     }
 ]
