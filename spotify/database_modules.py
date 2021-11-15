@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import json, spotipy, os, operator, collections
 
-with open("secrets", "r") as f:
+with open("spotify/secrets", "r") as f:
     client_secret = f.read()
     client_id = "166bf0427c28473385cfe53e316bec45"
     sp = spotipy.Spotify(auth_manager=spotipy.oauth2.SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))

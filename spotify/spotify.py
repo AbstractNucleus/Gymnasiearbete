@@ -1,7 +1,7 @@
 from database_modules import save_user_data
+from PyQt5.QtWidgets import QApplication, QLabel
 
-
-
-
-#save_user_data("weepur007")
-
+app = QApplication([])
+label = QLabel("fabian bitch")
+label.show()
+app.exec()
