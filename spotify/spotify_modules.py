@@ -31,4 +31,4 @@ def save_csv(user):
     with open(f"spotify/data/{pl_id}.json", "w") as j: j.write(json.dumps(features, indent=4))
         
 
-save_csv("weepur007")
+save_csv("")
