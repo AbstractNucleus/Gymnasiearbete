@@ -20,7 +20,9 @@ def translate(string, table):
 # Används för att generera L och R
 def f(r, k):
     r = permutate(r, E_BIT)
-    return xor(r, k, len(r))
+    x = xor(r, k, len(r))
+    
+    return 
 
 
 # XOR funktion som går att använda med strings
@@ -76,15 +78,9 @@ L_LIST, R_LIST = [L], [R]
 # Rn = Ln-1 + f(Rn-1,Kn)
 
 for n in range(1, 17):
-    L_LIST.append(R_LIST[n-1])
     R_LIST.append(L_LIST[n-1] + f(R_LIST[n-1], K_LIST[n-1]))
+    L_LIST.append(R_LIST[n-1])
     
-
-RL_LIST = []
-for i in range(len(R_LIST)):
-    RL_LIST.append(R_LIST[i] + L_LIST[i])
-
-for i in R_LIST:
-    print(i)
+    
 
 #print(hex(int(permutate(RL_LIST[16], IP_1), 2)))
