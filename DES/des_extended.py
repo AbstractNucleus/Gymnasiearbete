@@ -21,8 +21,14 @@ def translate(string, table):
 def f(r, k):
     r = permutate(r, E_BIT)
     x = xor(r, k, len(r))
-    
-    return 
+    y = []
+    for i in range(0,48,6):
+        y.append(x[i]+x[i+5])
+    c = 0
+    for i in range(0, len(x), 6):
+        y[c] += x[i+1]+x[i+2]+x[i+3]+x[i+4]
+        c += 1
+    return permutate(S_1[y[0]]+S_2[y[1]]+S_3[y[2]]+S_4[y[3]]+S_5[y[4]]+S_6[y[5]]+S_7[y[6]]+S_8[y[7]], P)
 
 
 # XOR funktion som går att använda med strings
@@ -77,10 +83,9 @@ L_LIST, R_LIST = [L], [R]
 # Ln = Rn-1
 # Rn = Ln-1 + f(Rn-1,Kn)
 
-for n in range(1, 17):
-    R_LIST.append(L_LIST[n-1] + f(R_LIST[n-1], K_LIST[n-1]))
-    L_LIST.append(R_LIST[n-1])
-    
-    
+for i in range(1, 17):
+    L_LIST.append(R_LIST[i-1])
+    R_LIST.append(xor(L_LIST[i-1], f(R_LIST[i-1], K_LIST[i-1]), len(L_LIST[i-1])))
+RL = R_LIST[16]+L_LIST[16]
+print(hex(int((permutate(RL, IP_1))))[2:])
 
-#print(hex(int(permutate(RL_LIST[16], IP_1), 2)))
