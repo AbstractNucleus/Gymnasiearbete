@@ -1,5 +1,5 @@
 import spotipy, json
-from secrets import client_secret, client_id, redirect_uri
+from secrets import client_secret, client_id
 import numpy as np
 import pandas as pd
 
@@ -34,5 +34,6 @@ def save_csv(user):
     df.to_csv(f"spotify/data/{pl_id}.csv")
     with open(f"spotify/data/{pl_id}.json", "w") as j: j.write(json.dumps(features, indent=4))
         
+#print(sp.user_playlists("xfazze")["items"][1]["name"])
+print(sp.track("46OSr5A12abROSe3rZXVSh")["name"])
 
-save_csv("weepur007")

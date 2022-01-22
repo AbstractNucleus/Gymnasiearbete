@@ -41,7 +41,8 @@ def xor(a, b, n):
             ans += "1"
     return ans
 
-M = "1030114186110932"
+M = str(int("0x64905e2a75f225531d9fa0518855d617392fc31ff05cdaf3fe2", base=16))
+M = str(int(M, base=2))
 
 
 ip, x = "", ""
@@ -53,21 +54,21 @@ M_BIN = translate(M, DEC_TO_BIN_0_9)
 
 
 # Permuterar den binära delen med PC_1 och delar in den i C och D
-CD_PRE = permutate(M_BIN, PC_1)
+'''CD_PRE = permutate(M_BIN, PC_1)
 C, D = CD_PRE[:28], CD_PRE[28:]
-C_LIST, D_LIST = [deque(C)], [deque(D)]
+C_LIST, D_LIST = [deque(C)], [deque(D)]'''
 
 
 # Left-shiftar C och D enligt tabellen och lägger in dem i varsin lista
-for n, i in enumerate(LEFT_SHIFTS):
+'''for n, i in enumerate(LEFT_SHIFTS):
     C_LIST.append(C_LIST[n].copy())
     D_LIST.append(D_LIST[n].copy())
     C_LIST[n+1].rotate(-i)
-    D_LIST[n+1].rotate(-i)
+    D_LIST[n+1].rotate(-i)'''
 
 
 # Lägger in C och D som strings i nya listor
-STRING_C_LIST = []
+'''STRING_C_LIST = []
 for i in C_LIST:
     res = ""
     for j in i:
@@ -79,17 +80,33 @@ for i in D_LIST:
     res = ""
     for j in i:
         res += j
-    STRING_D_LIST.append(res)
+    STRING_D_LIST.append(res)'''
 
 
 # Lägger ihop C och D och lägger in i en lista med 17 element
-CD_LIST = [STRING_C_LIST[i] + STRING_D_LIST[i] for i in range(17)]
+#CD_LIST = [STRING_C_LIST[i] + STRING_D_LIST[i] for i in range(17)]
 
 
 # Ger en lista med K genom att permutera CD_n med PC_2
-K_LIST = []
+'''K_LIST = []
 for i in range(1, 17):
-    K_LIST.append(permutate(CD_LIST[i], PC_2))
+    K_LIST.append(permutate(CD_LIST[i], PC_2))'''
+K_LIST = ['000100100000001010100000001001000100001101000000', 
+          '001000001010100000000001010001100000100001000000', 
+          '000000010010110000000010010000001000000101011100', 
+          '011000000010010010010000000000011001010010001000', 
+          '010101001000010000000000010010000001010000100001', 
+          '010000101000000000010010000010100100100000101100', 
+          '001011001000000000000110000000000101100110010000', 
+          '001000100000000000001010100000010000000000110001', 
+          '010000000001001011000001101000010100001001010000', 
+          '000100011101000001000000000100011000001000000010', 
+          '000000000100000111000010100101000000010000000100', 
+          '001100000100000100000101000010000010001011000100', 
+          '000000010000000100000001001100001110000010000001', 
+          '000000010000000010110101001000100000010000000011', 
+          '100101010000000010000000100011100010000100000010', 
+          '010000000000100100001010000001010000000100100011']
 
 
 # Permuterar binära M med IP och skapar L_0 och R_0
@@ -104,8 +121,7 @@ L_LIST, R_LIST = [L], [R]
 
 for i in range(1, 17):
     L_LIST.append(R_LIST[i-1])
-    R_LIST.append(xor(L_LIST[i-1], f(R_LIST[i-1], K_LIST[i-1]), 32))
+    R_LIST.append(xor(L_LIST[i-1], f(R_LIST[i-1], K_LIST[16-i]), 32))
 RL = R_LIST[16]+L_LIST[16]
-print(hex(int((permutate(RL, IP_1))))[2:])
-for i in K_LIST:
-    print(i)
+print(int(str(permutate(RL, IP_1)), base=2))
+
