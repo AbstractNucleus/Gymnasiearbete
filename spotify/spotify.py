@@ -1,7 +1,3 @@
-from database_modules import save_user_data
-from PyQt5.QtWidgets import QApplication, QLabel
+import database_modules as db
+import spotify_modules as sm
 
-app = QApplication([])
-label = QLabel("fabian bitch")
-label.show()
-app.exec()

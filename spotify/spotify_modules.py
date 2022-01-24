@@ -34,5 +34,23 @@ def save_csv(user):
     df.to_csv(f"spotify/data/{pl_id}.csv")
     with open(f"spotify/data/{pl_id}.json", "w") as j: j.write(json.dumps(features, indent=4))
         
+def search_artists(search):
+    try:
+        results = []
+        for i in sp.search(type="artist", q=search)["artists"]["items"]:
+            results.append({"name": i["name"], "id": i["id"]})
+    except:
+        results = "none"
+    return results
 
-save_csv("weepur007")
+def compare_popularity(artist_list):
+    result = []
+    for i in artist_list:
+        result.append({"id": i["id"], "popularity": sp.artist(i["id"][0])})
+    print(result)
+
+compare_popularity(search_artists("Glaive"))
+
+
+def artist_based_playlist(source_playlist, artist_id):
+    pass
