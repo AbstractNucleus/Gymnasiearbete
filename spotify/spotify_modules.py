@@ -1,5 +1,5 @@
 import spotipy, json
-from secrets import client_secret, client_id, redirect_uri
+from secrets import client_secret, client_id
 import numpy as np
 import pandas as pd
 
@@ -34,6 +34,7 @@ def save_csv(user):
     df.to_csv(f"spotify/data/{pl_id}.csv")
     with open(f"spotify/data/{pl_id}.json", "w") as j: j.write(json.dumps(features, indent=4))
         
+<<<<<<< HEAD
 def search_artists(search):
     try:
         results = []
@@ -54,3 +55,8 @@ compare_popularity(search_artists("Glaive"))
 
 def artist_based_playlist(source_playlist, artist_id):
     pass
+=======
+#print(sp.user_playlists("xfazze")["items"][1]["name"])
+print(sp.track("46OSr5A12abROSe3rZXVSh")["name"])
+
+>>>>>>> c96f9e56aff7f441cfffd12ddf0d7d2d8cdfd46a
