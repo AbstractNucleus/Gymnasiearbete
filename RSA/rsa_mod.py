@@ -1,8 +1,10 @@
 def encrypt(msg, n, e):
     return pow(msg, e, n)
 
+
 def decrypt(cipher, n, d):
     return pow(cipher, d, n)
+
 
 def hack(n, e, cipher):
     for p in range(2,n):
@@ -19,6 +21,7 @@ def hack(n, e, cipher):
     if d < 0:
         d = F + d
     return int(q), int(p), int(n), int(d)
+
 
 def key_gen(bits):
     from Crypto.Util import number as num
