@@ -78,7 +78,7 @@ def permutate(string, table, n):
 
 def generate_keys(KEY):
     # Skapar listor för nycklarna
-    BIN_KEYS, HEX_KEYS = [], []
+    BIN_KEYS = []
 
     # Gör nyckeln till 56-bit
     KEY = permutate(KEY, PC_1, 56)
@@ -93,12 +93,11 @@ def generate_keys(KEY):
         )
         COMBINED = LEFT + RIGHT
         BIN_KEYS.append(permutate(COMBINED, PC_2, 48))
-        HEX_KEYS.append(bin_to_hex(permutate(COMBINED, PC_2, 48)))
 
-    return BIN_KEYS, HEX_KEYS
+    return BIN_KEYS
 
 
-def encrypt(MSG, KEYS, KEYS_HEX):
+def encrypt(MSG, KEYS,):
     MSG = hex_to_bin(MSG)
     MSG = permutate(MSG, IP, 64)
 
@@ -135,14 +134,14 @@ def encrypt(MSG, KEYS, KEYS_HEX):
     return bin_to_hex(permutate(COMBINED, IP_1, 64))
 
 
-def decrypt(CIPHER, KEYS, KEYS_HEX):
-    KEYS_REVERSED, KEYS_HEX_REVERSED = KEYS[::-1], KEYS_HEX[::-1]
-    return encrypt(CIPHER, KEYS_REVERSED, KEYS_HEX_REVERSED)
+def decrypt(CIPHER, KEYS):
+    KEYS_REVERSED = KEYS[::-1]
+    return encrypt(CIPHER, KEYS_REVERSED)
 
 
 def take_time_gen(KEY):
     t0 = time.time()
-    BIN_KEYS, HEX_KEYS = generate_keys(KEY)
+    BIN_KEYS = generate_keys(KEY)
     return time.time() - t0
 
 
