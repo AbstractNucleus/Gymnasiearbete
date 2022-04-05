@@ -21,12 +21,9 @@ def hack(n, e, cipher):
     if d < 0:
         d = F + d
     return int(q), int(p), int(n), int(d)
-
-
-def key_gen(bits):
-    from Crypto.Util import number as num
-
-    p, q = num.getStrongPrime(bits), num.getStrongPrime(bits)
+def key_gen():
+    p, q = (33336533586638623944861695112578427037,
+            124817519275121455223620063628820551257)
     F, n, e = (p - 1) * (q - 1), p * q, 2**16 + 1
     d, y, u, v, num1, num2 = 0, 1, 1, 0, e, F
     while num1 != 0:
