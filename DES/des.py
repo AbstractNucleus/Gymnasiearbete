@@ -20,9 +20,9 @@ if __name__ == "__main__":
     BIN_KEYS = generate_keys(KEY)
     CIPHER = encrypt(MSG, BIN_KEYS)
     TEXT = decrypt(CIPHER, BIN_KEYS)
-    print(CIPHER)
+    print("ciffret:",CIPHER)
     TEXT2 = ""
     for i in TEXT.split("0"):
         if i:
             TEXT2 += i
-    print(TEXT2)
+    print("decrypterat", TEXT2)

@@ -14,5 +14,5 @@ if __name__ == "__main__":
     for i in str(text).split("0"):
         if i:
             TEXT2 += i
-    print(svar)
-    print(TEXT2)
+    print("chiffret",svar)
+    print("decrypterat",TEXT2)
